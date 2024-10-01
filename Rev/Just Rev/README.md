@@ -1,7 +1,7 @@
 ## Just Rev
 
 Description: Show me your skills<br>
-Author: h4ckyou
+Author: h4ckyou<br>
 Solves: 0
 
 ---
