@@ -31,4 +31,4 @@ A total of 18 applicants successfully applied through the registration portal. T
 
 After a thrilling competition, Team Pwn-stars emerged as the overall winner with an impressive total of 2050 points. Team Logs and Sate Sate Sate secured the first runner-up and second runner-up positions with 1900 and 1850 points, respectively. Below is the final scoreboard following the conclusion of the event: -
 
-[![Scoreboad](https://raw.githubusercontent.com/cyberexpertsng/cseanctfv1/main/csean-ctf/scoreboard.jpeg)
+![scoreboard](https://github.com/user-attachments/assets/412f2f61-6493-40f0-9e0d-cf938eca39da)
