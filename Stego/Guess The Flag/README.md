@@ -1,7 +1,7 @@
 ## Guess The Flag
 
-Description: This is me totally not trolling
-Author: h4ckyou
+Description: This is me totally not trolling<br>
+Author: h4ckyou<br>
 Solves: 4
 
 ---
