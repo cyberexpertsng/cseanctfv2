@@ -1,3 +1,5 @@
-## N Tripple C - NCCC
+![image](https://github.com/user-attachments/assets/d0d3d09b-2d5c-4cce-abeb-db91450c62b7)
 
-![image](https://github.com/user-attachments/assets/b9168e36-c2e5-400a-bbcf-85c8c686ba8b)
+https://www.linkedin.com/company/nigeria-computer-emergency-response-team/
+
+flag: `csean-ctf{Ahmad Sa'ad Abubakar, ONSA}24`
