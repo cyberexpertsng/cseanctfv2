@@ -86,6 +86,71 @@ __int64 feedback()
 }
 ```
 
+Ok looking through that we see that it receives our input and stores it in `buf` then it yet again receives our input and stores it in `buf` and finally it receives our input and stores it in `v2`
+
+There are two vulnerabilities there:
+- Arbitrary Write to Memory (Write What Where)
+- Buffer Overflow
+
+The first bug comes from the fact that `&buf` is used, which gives the address of the buffer itself and we are reading into it, this means we are reading into the address pointed by buf which therefore gives us the ability to overwrite the address of `buf` and then we can reading into `buf` meaning we are reading into the address of buf
+
+The second bug is an obvious overflow, since we are reading at most `0x60` bytes into a buffer that can only hold up `0x28` bytes
+
+Now how do we exploit this?
+
+Looking through the available functions we see this
+![image](https://github.com/user-attachments/assets/6e55efe4-1566-4795-a549-0dc1cf54726f)
+
+Hmm, a backdoor function
+
+Checking it shows this
+![image](https://github.com/user-attachments/assets/2487856b-1cf2-483a-9e95-09ed44012b21)
+
+```c
+__int64 __fastcall backdoor(__int16 a1, __int16 a2)
+{
+  FILE *stream; // [rsp+10h] [rbp-40h]
+  char ptr[40]; // [rsp+20h] [rbp-30h] BYREF
+  unsigned __int64 v5; // [rsp+48h] [rbp-8h]
+
+  v5 = __readfsqword(0x28u);
+  stream = fopen("flag.txt", "r");
+  if ( stream )
+  {
+    if ( a1 == (__int16)0xDEAD && a2 == (__int16)0xBEEF )
+    {
+      ptr[fread(ptr, 1uLL, 0x27uLL, stream)] = 0;
+      puts(ptr);
+    }
+    else
+    {
+      puts("Invalid keys");
+    }
+    fclose(stream);
+    return 0LL;
+  }
+  else
+  {
+    puts("Error opening flag.txt, contact admin!");
+    return 1LL;
+  }
+}
+```
+
+Basically this function expects two parameter and expects them to match `0xdead` & `0xbeef` respectively, if it does match then it prints the flag
+
+Our goal is to call this function, but how do we exactly exploit the buffer overflow?
+
+When we try to smash the stack we would overwrite the stack canary thereby failing the stack canary check and calling the `__stack_chk_fail` function
+![image](https://github.com/user-attachments/assets/66ae42c7-6444-4c36-906f-7887025210b4)
+
+We need to bypass this!
+
+To do that we would leverage the Write-What-Where primitive to overwrite the GOT of the `__stack_chk_fail` function so that when it's called it justs `ret`
+
+
+
+
 
 
 
