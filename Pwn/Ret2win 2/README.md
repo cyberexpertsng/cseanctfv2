@@ -18,7 +18,7 @@ So we are working with a 64 bits executable which is dynamically linked and not 
 Let us run it to get an overview of what it does
 ![image](https://github.com/user-attachments/assets/779cadb5-7269-4277-b93b-9e4adf1c3650)
 
-So the program asks if we have any feedback, if we do not it exists else it receives 3 feedbacks from us
+So the program asks if we have any feedback, if we do not it exits else it receives 3 feedbacks from us
 
 Interesting! in order to find the vulnerabiltiy we need to decompile the binary and my choice here is IDA
 
