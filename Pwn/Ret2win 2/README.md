@@ -99,6 +99,7 @@ The second bug is an obvious overflow, since we are reading at most `0x60` bytes
 Now how do we exploit this?
 
 Looking through the available functions we see this
+
 ![image](https://github.com/user-attachments/assets/6e55efe4-1566-4795-a549-0dc1cf54726f)
 
 Hmm, a backdoor function
