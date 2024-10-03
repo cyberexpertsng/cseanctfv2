@@ -149,6 +149,11 @@ We need to bypass this!
 
 To do that we would leverage the Write-What-Where primitive to overwrite the GOT of the `__stack_chk_fail` function so that when it's called it justs `ret`
 
+The idea is that when we overwrite the global offset table of the `__stack_chk_fail` function to a `ret` instruction, when we perform the buffer overflow the function is going to be called, but since it points to an instruction `ret` it would just return and continue execution like nothing happened which then allows us to overwrite the saved rbp and the return address because this is how the stack layout is:
+
+```
+buffer -> stack canary -> saved rbp -> return address
+```
 
 
 
