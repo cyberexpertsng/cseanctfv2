@@ -138,7 +138,7 @@ __int64 __fastcall backdoor(__int16 a1, __int16 a2)
 }
 ```
 
-Basically this function expects two parameter and expects them to match `0xdead` & `0xbeef` respectively, if it does match then it prints the flag
+Basically this function requires two parameter and expects them to match `0xdead` & `0xbeef` respectively, if it does match then it prints the flag
 
 Our goal is to call this function, but how do we exactly exploit the buffer overflow?
 
