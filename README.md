@@ -9,7 +9,7 @@ The Cyber Security Experts Association of Nigeria (CSEAN), the leading professio
 * Network Security.
 * Governance Risk and Compliance (GRC) among others.
 
-A total of 18 applicants successfully applied through the registration portal. The team names are: -
+A total of 25 Teams successfully applied through the registration portal. 18 Teams made it to playing the CTF after thorough vetting as listed below: -
 1. ManiakArmy 
 2. NetSentinal 
 3. Logs
